@@ -63,3 +63,4 @@ MonoBehaviour:
   emptySprite: {fileID: 21300000, guid: 7a0647e1be3a31648a31fbd8d03ce939, type: 3}
   defaultSprite: {fileID: 21300000, guid: fa459a9c56e80344694134fa4430813d, type: 3}
   flagSprite: {fileID: 21300000, guid: 510bed736b3f77343b507180989c0b54, type: 3}
+  gameOverText: {fileID: 7849009614152725621, guid: 39e8520f4ac5c234ab0fb52c33d6eef6, type: 3}

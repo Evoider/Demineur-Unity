@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -226,7 +227,7 @@ public class GameManager : MonoBehaviour
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(canvasObject.transform);
-        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,20);
     }
 
     public bool IsGameOver()

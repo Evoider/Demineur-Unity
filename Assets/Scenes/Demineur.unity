@@ -511,6 +511,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Restart
       objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
 --- !u!1001 &1209112448
@@ -520,18 +528,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5646332804559266538, guid: 72826750b3630f54f83012637a818370, type: 3}
-      propertyPath: width
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5646332804559266538, guid: 72826750b3630f54f83012637a818370, type: 3}
-      propertyPath: height
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5646332804559266538, guid: 72826750b3630f54f83012637a818370, type: 3}
-      propertyPath: gameOverText
-      value: 
-      objectReference: {fileID: 7849009614152725621, guid: 39e8520f4ac5c234ab0fb52c33d6eef6, type: 3}
     - target: {fileID: 7214272616291606797, guid: 72826750b3630f54f83012637a818370, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -697,10 +693,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1332473914}
-    - target: {fileID: 189129556301574159, guid: 60bd7909074e99b44ab17202bd40559d, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GameOver
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60bd7909074e99b44ab17202bd40559d, type: 3}
 --- !u!224 &1518536906 stripped
