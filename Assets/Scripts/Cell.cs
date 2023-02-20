@@ -9,14 +9,18 @@ public class Cell : MonoBehaviour
     public bool isMine;
     public bool isRevealed;
     public bool isMarked;
+    public AudioClip[] explosion;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
+    private AudioSource audioSource;
     public int adjacentMines; 
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
     }
 
     private void OnMouseOver()
@@ -54,6 +58,8 @@ public class Cell : MonoBehaviour
     public void RevealExplodedMine()
     {
         isRevealed = true;
+        audioSource.clip = explosion[Random.Range(0, explosion.Length)];
+        audioSource.Play();
         spriteRenderer.sprite = gameManager.loseMineSprite;
         spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f);
     }

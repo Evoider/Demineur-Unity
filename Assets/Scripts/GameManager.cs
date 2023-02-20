@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -15,13 +16,16 @@ public class GameManager : MonoBehaviour
     public Sprite emptySprite;
     public Sprite defaultSprite;
     public Sprite flagSprite;
+    public GameObject gameOverText;
 
+    private GameObject canvasObject;
     private GameObject gridObject;
     private Cell[,] grid;
 
     private void Start()
     {
         gridObject = GameObject.Find("Grid");
+        canvasObject = GameObject.Find("Canvas");
         CreateGrid();
         PlaceMines();
     }
@@ -219,6 +223,10 @@ public class GameManager : MonoBehaviour
                 cell.RevealMine();
             }
         }
+        GameObject gameOvertxt = Instantiate(gameOverText, transform);
+        gameOvertxt.name = "GameOverText";
+        gameOvertxt.transform.SetParent(canvasObject.transform);
+        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
     }
 
     public bool IsGameOver()
@@ -243,6 +251,7 @@ public class GameManager : MonoBehaviour
                 Destroy(grid[x, y].gameObject);
             }
         }
+        Destroy(GameObject.Find("GameOverText"));
         CreateGrid();
         PlaceMines();
     }
