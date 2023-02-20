@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public Sprite defaultSprite;
     public Sprite flagSprite;
     public GameObject gameOverText;
+    public GameObject restartBtn;
 
     private GameObject canvasObject;
     private GameObject gridObject;
@@ -120,6 +121,10 @@ public class GameManager : MonoBehaviour
             if (!cell.isRevealed && !cell.isMine)
             {
                 allCellsRevealed = false;
+                GameObject gameOvertxt = Instantiate(gameOverText, transform);
+                gameOvertxt.name = "GameOverText";
+                gameOvertxt.transform.SetParent(canvasObject.transform);
+                gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
                 break;
             }
         }
@@ -226,7 +231,11 @@ public class GameManager : MonoBehaviour
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(canvasObject.transform);
-        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = Vector3.zero;
+        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,20);
+        GameObject restart = Instantiate(restartBtn, transform);
+        restart.name = "GameOverRestart";
+        restart.transform.SetParent(canvasObject.transform);
+        restart.GetComponent<RectTransform>().anchoredPosition=new Vector2(0,0);
     }
 
     public bool IsGameOver()
@@ -254,6 +263,20 @@ public class GameManager : MonoBehaviour
         Destroy(GameObject.Find("GameOverText"));
         CreateGrid();
         PlaceMines();
+    }
+
+    public void Cheat()
+    {
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (!grid[x, y].isMine)
+                {
+                    grid[x, y].Reveal();
+                }
+            }
+        }
     }
 }
 
