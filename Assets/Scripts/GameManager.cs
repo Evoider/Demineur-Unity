@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         grid = new Cell[width, height];
 
-        // Crée chaque cellule de la grille
+        // Crï¿½e chaque cellule de la grille
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -91,13 +92,13 @@ public class GameManager : MonoBehaviour
         {
             for (int y2 = y - 1; y2 <= y + 1; y2++)
             {
-                // Ignore la case elle-même
+                // Ignore la case elle-mï¿½me
                 if (x2 == x && y2 == y)
                 {
                     continue;
                 }
 
-                // Vérifie si la case est dans la grille
+                // Vï¿½rifie si la case est dans la grille
                 if (x2 >= 0 && x2 < width && y2 >= 0 && y2 < height)
                 {
                     if (grid[x2, y2].isMine)
@@ -115,7 +116,7 @@ public class GameManager : MonoBehaviour
     {
         bool allCellsRevealed = true;
 
-        // Vérifie si toutes les cellules ont été révélées, sauf les mines
+        // Vï¿½rifie si toutes les cellules ont ï¿½tï¿½ rï¿½vï¿½lï¿½es, sauf les mines
         foreach (Cell cell in grid)
         {
             if (!cell.isRevealed && !cell.isMine)
@@ -143,30 +144,30 @@ public class GameManager : MonoBehaviour
         {
             for (int y2 = y - 1; y2 <= y + 1; y2++)
             {
-                // Ignore la case elle-même
+                // Ignore la case elle-mï¿½me
                 if (x2 == x && y2 == y)
                 {
                     continue;
                 }
 
-                // Vérifie si la case est dans la grille
+                // Vï¿½rifie si la case est dans la grille
                 if (x2 >= 0 && x2 < width && y2 >= 0 && y2 < height)
                 {
                     Cell cell = grid[x2, y2];
 
-                    // Ignore les cases déjà révélées ou marquées
+                    // Ignore les cases dï¿½jï¿½ rï¿½vï¿½lï¿½es ou marquï¿½es
                     if (cell.isRevealed || cell.isMarked)
                     {
                         continue;
                     }
 
-                    // Révèle les cases vides
+                    // Rï¿½vï¿½le les cases vides
                     if (cell.adjacentMines == 0)
                     {
                         cell.Reveal();
                         RevealEmptyCells(x2, y2);
                     }
-                    // Révèle les cases avec des nombres adjacents
+                    // Rï¿½vï¿½le les cases avec des nombres adjacents
                     else
                     {
                         cell.RevealNumber();
@@ -178,13 +179,13 @@ public class GameManager : MonoBehaviour
 
     public void CellClicked(Cell cell)
     {
-        // Ignore les clics si la partie est terminée
+        // Ignore les clics si la partie est terminï¿½e
         if (IsGameOver())
         {
             return;
         }
 
-        // Révèle la cellule cliquée
+        // Rï¿½vï¿½le la cellule cliquï¿½e
         if (cell.isMine)
         {
             cell.RevealExplodedMine();
@@ -205,22 +206,22 @@ public class GameManager : MonoBehaviour
 
     public void CellMarked(Cell cell)
     {
-        // Ignore les clics si la partie est terminée
+        // Ignore les clics si la partie est terminï¿½e
         if (IsGameOver())
         {
             return;
         }
 
-        // Marque ou démarque la cellule
+        // Marque ou dï¿½marque la cellule
         cell.ToggleMark();
 
-        // Vérifie si la partie est gagnée
+        // Vï¿½rifie si la partie est gagnï¿½e
         CheckWinCondition();
     }
 
     public void GameOver()
     {
-        // Révèle toutes les mines
+        // Rï¿½vï¿½le toutes les mines
         foreach (Cell cell in grid)
         {
             if (cell.isMine && !cell.isRevealed)
@@ -232,15 +233,11 @@ public class GameManager : MonoBehaviour
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(canvasObject.transform);
         gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,20);
-        GameObject restart = Instantiate(restartBtn, transform);
-        restart.name = "GameOverRestart";
-        restart.transform.SetParent(canvasObject.transform);
-        restart.GetComponent<RectTransform>().anchoredPosition=new Vector2(0,0);
     }
 
     public bool IsGameOver()
     {
-        // Vérifie si une mine a été révélée
+        // Vï¿½rifie si une mine a ï¿½tï¿½ rï¿½vï¿½lï¿½e
         foreach (Cell cell in grid)
         {
             if (cell.isRevealed && cell.isMine)
