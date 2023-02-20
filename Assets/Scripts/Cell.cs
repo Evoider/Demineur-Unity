@@ -11,7 +11,7 @@ public class Cell : MonoBehaviour
     public bool isMarked;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
-    public int adjacentMines;
+    public int adjacentMines; 
 
     private void Awake()
     {
