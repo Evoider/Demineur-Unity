@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public Sprite defaultSprite;
     public Sprite flagSprite;
     public GameObject gameOverText;
-    public GameObject restartBtn;
+    public GameObject winText;
 
     private GameObject canvasObject;
     private GameObject gridObject;
@@ -122,17 +122,16 @@ public class GameManager : MonoBehaviour
             if (!cell.isRevealed && !cell.isMine)
             {
                 allCellsRevealed = false;
-                GameObject gameOvertxt = Instantiate(gameOverText, transform);
-                gameOvertxt.name = "GameOverText";
-                gameOvertxt.transform.SetParent(canvasObject.transform);
-                gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
                 break;
             }
         }
 
         if (allCellsRevealed)
         {
-            Debug.Log("Win");
+            GameObject winTxt = Instantiate(winText, transform);
+            winTxt.name = "WinText";
+            winTxt.transform.SetParent(canvasObject.transform);
+            winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
         }
     }
 
@@ -221,7 +220,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // R�v�le toutes les mines
+        // Révéle toutes les mines
         foreach (Cell cell in grid)
         {
             if (cell.isMine && !cell.isRevealed)
@@ -237,7 +236,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsGameOver()
     {
-        // V�rifie si une mine a �t� r�v�l�e
+        // Vérifie si une mine a été révélé
         foreach (Cell cell in grid)
         {
             if (cell.isRevealed && cell.isMine)
@@ -258,6 +257,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Destroy(GameObject.Find("GameOverText"));
+        Destroy(GameObject.Find("WinText"));
         CreateGrid();
         PlaceMines();
     }
@@ -272,6 +272,11 @@ public class GameManager : MonoBehaviour
                 {
                     grid[x, y].Reveal();
                 }
+                else if (grid[x, y].isMine)
+                {
+                    grid[x, y].RevealMine();
+                }
+                CheckWinCondition();
             }
         }
     }
