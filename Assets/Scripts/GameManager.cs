@@ -1,0 +1,238 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GameManager : MonoBehaviour
+{
+    public int width = 10;
+    public int height = 10;
+    public float spacing = 1.2f;
+    public int mineCount = 10;
+    public GameObject cellPrefab;
+    public Sprite[] numberSprites;
+    public Sprite mineSprite;
+    public Sprite loseMineSprite;
+    public Sprite emptySprite;
+    public Sprite defaultSprite;
+    public Sprite flagSprite;
+
+    private GameObject gridObject;
+    private Cell[,] grid;
+
+    private void Start()
+    {
+        gridObject = GameObject.Find("Grid");
+        CreateGrid();
+        PlaceMines();
+    }
+
+    private void CreateGrid()
+    {
+        grid = new Cell[width, height];
+
+        // Crée chaque cellule de la grille
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                GameObject newCell = Instantiate(cellPrefab, new Vector3(x, y, 0), Quaternion.identity);
+                newCell.name = string.Format("Cell ({0}, {1})", x, y);
+                newCell.transform.parent = gridObject.transform; // set the grid object as the parent of the new cell
+                Cell cell = newCell.GetComponent<Cell>();
+                cell.x = x;
+                cell.y = y;
+                grid[x, y] = cell;
+            }
+        }
+    }
+
+    private void PlaceMines()
+    {
+        int minesPlaced = 0;
+
+        while (minesPlaced < mineCount)
+        {
+            int x = Random.Range(0, width);
+            int y = Random.Range(0, height);
+
+            // Place une mine si la case est vide
+            if (!grid[x, y].isMine)
+            {
+                grid[x, y].isMine = true;
+                minesPlaced++;
+            }
+        }
+
+        // Compte le nombre de mines adjacentes pour chaque cellule
+        for (int x = 0; x < width; x++)
+        {
+            for (int y = 0; y < height; y++)
+            {
+                if (!grid[x, y].isMine)
+                {
+                    int adjacentMines = CountAdjacentMines(x, y);
+                    grid[x, y].adjacentMines = adjacentMines;
+                }
+            }
+        }
+    }
+
+    private int CountAdjacentMines(int x, int y)
+    {
+        int count = 0;
+
+        // Parcourt les cases adjacentes
+        for (int x2 = x - 1; x2 <= x + 1; x2++)
+        {
+            for (int y2 = y - 1; y2 <= y + 1; y2++)
+            {
+                // Ignore la case elle-même
+                if (x2 == x && y2 == y)
+                {
+                    continue;
+                }
+
+                // Vérifie si la case est dans la grille
+                if (x2 >= 0 && x2 < width && y2 >= 0 && y2 < height)
+                {
+                    if (grid[x2, y2].isMine)
+                    {
+                        count++;
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+
+    private void CheckWinCondition()
+    {
+        bool allCellsRevealed = true;
+
+        // Vérifie si toutes les cellules ont été révélées, sauf les mines
+        foreach (Cell cell in grid)
+        {
+            if (!cell.isRevealed && !cell.isMine)
+            {
+                allCellsRevealed = false;
+                break;
+            }
+        }
+
+        if (allCellsRevealed)
+        {
+            Debug.Log("Win");
+        }
+    }
+
+
+    private void RevealEmptyCells(int x, int y)
+    {
+        // Parcourt les cases adjacentes
+        for (int x2 = x - 1; x2 <= x + 1; x2++)
+        {
+            for (int y2 = y - 1; y2 <= y + 1; y2++)
+            {
+                // Ignore la case elle-même
+                if (x2 == x && y2 == y)
+                {
+                    continue;
+                }
+
+                // Vérifie si la case est dans la grille
+                if (x2 >= 0 && x2 < width && y2 >= 0 && y2 < height)
+                {
+                    Cell cell = grid[x2, y2];
+
+                    // Ignore les cases déjà révélées ou marquées
+                    if (cell.isRevealed || cell.isMarked)
+                    {
+                        continue;
+                    }
+
+                    // Révèle les cases vides
+                    if (cell.adjacentMines == 0)
+                    {
+                        cell.Reveal();
+                        RevealEmptyCells(x2, y2);
+                    }
+                    // Révèle les cases avec des nombres adjacents
+                    else
+                    {
+                        cell.RevealNumber();
+                    }
+                }
+            }
+        }
+    }
+
+    public void CellClicked(Cell cell)
+    {
+        // Ignore les clics si la partie est terminée
+        if (IsGameOver())
+        {
+            return;
+        }
+
+        // Révèle la cellule cliquée
+        if (cell.isMine)
+        {
+            cell.RevealExplodedMine();
+            GameOver();
+        }
+        else if (cell.adjacentMines == 0)
+        {
+            cell.Reveal();
+            RevealEmptyCells(cell.x, cell.y);
+            CheckWinCondition();
+        }
+        else
+        {
+            cell.RevealNumber();
+            CheckWinCondition();
+        }
+    }
+
+    public void CellMarked(Cell cell)
+    {
+        // Ignore les clics si la partie est terminée
+        if (IsGameOver())
+        {
+            return;
+        }
+
+        // Marque ou démarque la cellule
+        cell.ToggleMark();
+
+        // Vérifie si la partie est gagnée
+        CheckWinCondition();
+    }
+
+    public void GameOver()
+    {
+        // Révèle toutes les mines
+        foreach (Cell cell in grid)
+        {
+            if (cell.isMine && !cell.isRevealed)
+            {
+                cell.RevealMine();
+            }
+        }
+    }
+
+    public bool IsGameOver()
+    {
+        // Vérifie si une mine a été révélée
+        foreach (Cell cell in grid)
+        {
+            if (cell.isRevealed && cell.isMine)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+

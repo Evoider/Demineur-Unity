@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8651708623052964767
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7214272616291606797}
+  - component: {fileID: 5646332804559266538}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7214272616291606797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651708623052964767}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5646332804559266538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8651708623052964767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48d7f29c7ecea534ab1c17c59b62f7f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 10
+  height: 10
+  spacing: 1.2
+  mineCount: 10
+  cellPrefab: {fileID: 7378693460840501337, guid: 9a0b4867397efad438514a0aaf30db2b, type: 3}
+  numberSprites:
+  - {fileID: 21300000, guid: 0745a83f5eb021d4e936233d2ae27297, type: 3}
+  - {fileID: 21300000, guid: dec9f868db6b0e74385a1fa6e0f9008a, type: 3}
+  - {fileID: 21300000, guid: d0b69521ce6d23247b647360b285330f, type: 3}
+  - {fileID: 21300000, guid: 7095c3e3021fba640b6eec53bf2e5dd1, type: 3}
+  - {fileID: 21300000, guid: 6439e357d6e644f4abe8c7a3576fffe3, type: 3}
+  - {fileID: 21300000, guid: 2923a20548c2c2746a94cb883711e726, type: 3}
+  - {fileID: 21300000, guid: 1c608abd36c3d8743ac26f167267bac4, type: 3}
+  - {fileID: 21300000, guid: f3dec210d483fc84b9571d6bbfb955ea, type: 3}
+  mineSprite: {fileID: 21300000, guid: b7979fe4d0f63f342b7ed1ae0cd128a8, type: 3}
+  loseMineSprite: {fileID: 21300000, guid: 8cb4671c66905dc4bb6e896b1915e291, type: 3}
+  emptySprite: {fileID: 21300000, guid: 7a0647e1be3a31648a31fbd8d03ce939, type: 3}
+  defaultSprite: {fileID: 21300000, guid: fa459a9c56e80344694134fa4430813d, type: 3}
+  flagSprite: {fileID: 21300000, guid: 510bed736b3f77343b507180989c0b54, type: 3}
