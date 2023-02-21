@@ -3,7 +3,15 @@ guid: 48d7f29c7ecea534ab1c17c59b62f7f0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cellPrefab: {fileID: 7378693460840501337, guid: 9a0b4867397efad438514a0aaf30db2b, type: 3}
+  - mineSprite: {instanceID: 0}
+  - loseMineSprite: {instanceID: 0}
+  - emptySprite: {instanceID: 0}
+  - defaultSprite: {instanceID: 0}
+  - flagSprite: {instanceID: 0}
+  - gameOverText: {fileID: 7849009614152725621, guid: 39e8520f4ac5c234ab0fb52c33d6eef6, type: 3}
+  - winText: {fileID: 6147384748624849711, guid: 2206cfbf5373d24449119d06ccf48847, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
