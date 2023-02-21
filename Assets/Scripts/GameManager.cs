@@ -212,7 +212,10 @@ public class GameManager : MonoBehaviour
         }
 
         // Marque ou d�marque la cellule
-        cell.ToggleMark();
+        if (!cell.isRevealed)
+        {
+            cell.ToggleMark();
+        }
 
         // V�rifie si la partie est gagn�e
         CheckWinCondition();
