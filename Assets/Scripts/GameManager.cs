@@ -228,6 +228,10 @@ public class GameManager : MonoBehaviour
                 cell.RevealMine();
             }
         }
+
+        Destroy(GameObject.Find("GameOverText"));
+        Destroy(GameObject.Find("WinText"));
+
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(canvasObject.transform);
@@ -265,6 +269,10 @@ public class GameManager : MonoBehaviour
 
     public void Cheat()
     {
+
+        Destroy(GameObject.Find("GameOverText"));
+        Destroy(GameObject.Find("WinText"));
+
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
