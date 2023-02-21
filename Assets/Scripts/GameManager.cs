@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,22 +22,20 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
 
-    private GameObject MenuObject;
-    private GameObject canvasObject;
+    [SerializeField] GameObject MenuObject;
+    private GameObject winLoseScreenObject;
     private GameObject gridObject;
     private Cell[,] grid;
 
     private void Start()
     {
-        canvasObject = GameObject.Find("Canvas");
-        MenuObject = GameObject.Find("Menu");
-        MenuObject.SetActive(false);
+        winLoseScreenObject = GameObject.Find("Win/LoseScreen");
+
+        StartGame();
+
 
     }
-    private void Awake()
-    {
-        DontDestroyOnLoad(transform.gameObject);
-    }
+   
     public void NumberMine(string input)
     {
         int number = int.Parse(input);
@@ -45,12 +44,14 @@ public class GameManager : MonoBehaviour
         mineCount= number;
     }
 
-    public void StartGame()
+    private void StartGame()
     {
-        if (gridObject!=null) { Destroy(GameObject.Find("Grid")); }
+        NumberMine(GameObject.Find("ParamStart").GetComponent<StartParam>().NumMines);
         CreateGrid();
         PlaceMines();
+        GameObject.Find("Main Camera").GetComponent<CameraManager>().UpdateCamera();
     }
+
     private void CreateGrid()
     {
         gridObject = new GameObject();
@@ -152,8 +153,9 @@ public class GameManager : MonoBehaviour
         {
             GameObject winTxt = Instantiate(winText, transform);
             winTxt.name = "WinText";
-            winTxt.transform.SetParent(canvasObject.transform);
+            winTxt.transform.SetParent(winLoseScreenObject.transform);
             winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
+            winTxt.GetComponent<RectTransform>().localScale= new Vector2(1, 1);
         }
     }
 
@@ -256,8 +258,9 @@ public class GameManager : MonoBehaviour
 
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
-        gameOvertxt.transform.SetParent(canvasObject.transform);
+        gameOvertxt.transform.SetParent(winLoseScreenObject.transform);
         gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
+        gameOvertxt.GetComponent<RectTransform>().localScale= new Vector2(1,1);
     }
 
     public bool IsGameOver()
