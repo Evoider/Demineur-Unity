@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(canvasObject.transform);
-        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0,20);
+        gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
     }
 
     public bool IsGameOver()
@@ -278,9 +278,9 @@ public class GameManager : MonoBehaviour
                 {
                     grid[x, y].RevealMine();
                 }
-                CheckWinCondition();
             }
         }
+        CheckWinCondition();
     }
 }
 
