@@ -247,6 +247,7 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
+     
     public void Restart()
     {
         for (int x = 0; x < width; x++)
