@@ -20,20 +20,41 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
 
+    private GameObject MenuObject;
     private GameObject canvasObject;
     private GameObject gridObject;
     private Cell[,] grid;
 
     private void Start()
     {
-        gridObject = GameObject.Find("Grid");
         canvasObject = GameObject.Find("Canvas");
+        MenuObject = GameObject.Find("Menu");
+        MenuObject.SetActive(false);
+
+    }
+    private void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+    public void NumberMine(string input)
+    {
+        int number = int.Parse(input);
+        width= number;
+        height= number;
+        mineCount= number;
+    }
+
+    public void StartGame()
+    {
+        if (gridObject!=null) { Destroy(GameObject.Find("Grid")); }
         CreateGrid();
         PlaceMines();
     }
-
     private void CreateGrid()
     {
+        gridObject = new GameObject();
+        gridObject.name = "Grid";
+
         grid = new Cell[width, height];
 
         // Cr�e chaque cellule de la grille
@@ -178,8 +199,8 @@ public class GameManager : MonoBehaviour
 
     public void CellClicked(Cell cell)
     {
-        // Ignore les clics si la partie est termin�e
-        if (IsGameOver())
+        // Ignore les clics si la partie est terminée ou en pause
+        if (IsGameOver() || MenuObject.activeInHierarchy)
         {
             return;
         }
@@ -254,13 +275,7 @@ public class GameManager : MonoBehaviour
      
     public void Restart()
     {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                Destroy(grid[x, y].gameObject);
-            }
-        }
+        Destroy(GameObject.Find("Grid"));
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
         CreateGrid();
