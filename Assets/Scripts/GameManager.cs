@@ -270,7 +270,9 @@ public class GameManager : MonoBehaviour
             {
                 if (!grid[x, y].isMine)
                 {
-                    grid[x, y].Reveal();
+                    if (grid[x, y].adjacentMines == 0)
+                        grid[x, y].Reveal();
+                    else grid[x, y].RevealNumber();
                 }
                 else if (grid[x, y].isMine)
                 {
