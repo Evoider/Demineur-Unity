@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StartParam : MonoBehaviour
+public class Parameter : MonoBehaviour
 {
-    public string NumMines { get; private set; }
+    public string MapSize { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
-        NumMines = "10";
+        MapSize = "10";
         DontDestroyOnLoad(transform.gameObject);
     }
 
-    public void NumberOfMines(string input)
+    public void SetMapSize(string input)
     {
-        NumMines = input;
+        MapSize = input;
     }
 }

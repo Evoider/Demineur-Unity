@@ -35,17 +35,17 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
    
-    public void NumberMine(string input)
+    public void MapSize(string input)
     {
         int number = int.Parse(input);
         width= number;
         height= number;
-        mineCount= number;
+        
     }
 
     private void StartGame()
     {
-        NumberMine(GameObject.Find("ParamStart").GetComponent<StartParam>().NumMines);
+        MapSize(GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize);
         CreateGrid();
         PlaceMines();
         GameObject.Find("Main Camera").GetComponent<CameraManager>().UpdateCamera();
@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
     public void CellClicked(Cell cell)
     {
         // Ignore les clics si la partie est terminée ou en pause
-        if (IsGameOver() || MenuObject.activeInHierarchy)
+        if (IsGameOver() || MenuObject.activeInHierarchy || cell.isMarked)
         {
             return;
         }
