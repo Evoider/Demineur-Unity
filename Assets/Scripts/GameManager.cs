@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         MapSize(GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize);
         CreateGrid();
         PlaceMines();
+        GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
         GameObject.Find("Main Camera").GetComponent<CameraManager>().UpdateCamera();
     }
 
@@ -285,6 +286,8 @@ public class GameManager : MonoBehaviour
         Destroy(GameObject.Find("WinText"));
         CreateGrid();
         PlaceMines();
+        GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
+
     }
 
     public void Cheat()
