@@ -21,7 +21,7 @@ public class CameraManager : MonoBehaviour
         cam = GetComponent<Camera>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         UpdateCamera();
-        
+
     }
 
     private void Update()
@@ -30,7 +30,8 @@ public class CameraManager : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
 
 
-        if(!pause) {
+        if (!pause)
+        {
             Vector3 movement = new(horizontalInput, verticalInput);
 
             if (movement.magnitude > 1)
@@ -38,14 +39,14 @@ public class CameraManager : MonoBehaviour
 
             transform.position += speed * Time.deltaTime * movement;
 
-            if (transform.position.x > bound - 2)
-                transform.position = new Vector3(bound - 2, transform.position.y, transform.position.z);
-            if (transform.position.x < 2)
-                transform.position = new Vector3(2, transform.position.y, transform.position.z);
-            if (transform.position.y > bound - 2)
-                transform.position = new Vector3(transform.position.x, bound - 2, transform.position.z);
-            if (transform.position.y < 2)
-                transform.position = new Vector3(transform.position.x, 2, transform.position.z);
+            if (transform.position.x > bound)
+                transform.position = new Vector3(bound, transform.position.y, transform.position.z);
+            if (transform.position.x < 0)
+                transform.position = new Vector3(0, transform.position.y, transform.position.z);
+            if (transform.position.y > bound)
+                transform.position = new Vector3(transform.position.x, bound, transform.position.z);
+            if (transform.position.y < 0)
+                transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         }
 
     }

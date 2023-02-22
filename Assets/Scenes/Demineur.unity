@@ -1463,6 +1463,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7764722931434722163, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_Name
+      value: ResumeBtn
+      objectReference: {fileID: 0}
     - target: {fileID: 8121930478183862118, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -769
