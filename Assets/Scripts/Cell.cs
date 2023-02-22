@@ -13,6 +13,7 @@ public class Cell : MonoBehaviour
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
+    BombCounter Count;
     public int adjacentMines; 
 
     private void Awake()
@@ -20,6 +21,7 @@ public class Cell : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Count = GameObject.Find("BombCount").GetComponent<BombCounter>();
 
     }
 
@@ -70,10 +72,12 @@ public class Cell : MonoBehaviour
         if (isMarked)
         {
             spriteRenderer.sprite = gameManager.flagSprite;
+            Count.Count--;
         }
         else
         {
             spriteRenderer.sprite = gameManager.defaultSprite;
+            Count.Count++;
         }
     }
 }

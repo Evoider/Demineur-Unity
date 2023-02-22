@@ -32,10 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         winLoseScreenObject = GameObject.Find("Win/LoseScreen");
-
         StartGame();
-
-
     }
    
     public void NumberMine(string input)

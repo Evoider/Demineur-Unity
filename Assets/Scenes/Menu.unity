@@ -472,9 +472,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5898182455590440544}
     - target: {fileID: 5197092012122810503, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197092012122810503, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197092012122810503, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5898182455590440544}
+    - target: {fileID: 5197092012122810503, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197092012122810503, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7412791438331092938, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
