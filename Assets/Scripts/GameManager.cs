@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
             winTxt.name = "WinText";
             winTxt.transform.SetParent(winLoseScreenObject.transform);
             winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
-            winTxt.GetComponent<RectTransform>().localScale= new Vector2(1, 1);
+            winTxt.GetComponent<RectTransform>().localScale= new Vector2(2, 2);
         }
     }
 
@@ -263,7 +263,7 @@ public class GameManager : MonoBehaviour
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(winLoseScreenObject.transform);
         gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
-        gameOvertxt.GetComponent<RectTransform>().localScale= new Vector2(1,1);
+        gameOvertxt.GetComponent<RectTransform>().localScale= new Vector2(2,2);
     }
 
     public bool IsGameOver()
