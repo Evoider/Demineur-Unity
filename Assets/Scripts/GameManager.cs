@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -22,20 +24,41 @@ public class GameManager : MonoBehaviour
     public GameObject winText;
     public GameObject gameTimer;
 
-    private GameObject canvasObject;
+    [SerializeField] GameObject MenuObject;
+    private GameObject winLoseScreenObject;
     private GameObject gridObject;
     private Cell[,] grid;
 
     private void Start()
     {
-        gridObject = GameObject.Find("Grid");
-        canvasObject = GameObject.Find("Canvas");
+        winLoseScreenObject = GameObject.Find("Win/LoseScreen");
+
+        StartGame();
+
+
+    }
+   
+    public void NumberMine(string input)
+    {
+        int number = int.Parse(input);
+        width= number;
+        height= number;
+        mineCount= number;
+    }
+
+    private void StartGame()
+    {
+        NumberMine(GameObject.Find("ParamStart").GetComponent<StartParam>().NumMines);
         CreateGrid();
         PlaceMines();
+        GameObject.Find("Main Camera").GetComponent<CameraManager>().UpdateCamera();
     }
 
     private void CreateGrid()
     {
+        gridObject = new GameObject();
+        gridObject.name = "Grid";
+
         grid = new Cell[width, height];
 
         // Cr�e chaque cellule de la grille
@@ -57,7 +80,7 @@ public class GameManager : MonoBehaviour
     private void PlaceMines()
     {
         int minesPlaced = 0;
-
+        mineCount = width* height *15 /100;
         while (minesPlaced < mineCount)
         {
             int x = Random.Range(0, width);
@@ -132,8 +155,9 @@ public class GameManager : MonoBehaviour
         {
             GameObject winTxt = Instantiate(winText, transform);
             winTxt.name = "WinText";
-            winTxt.transform.SetParent(canvasObject.transform);
+            winTxt.transform.SetParent(winLoseScreenObject.transform);
             winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
+            winTxt.GetComponent<RectTransform>().localScale= new Vector2(2, 2);
         }
     }
 
@@ -179,8 +203,8 @@ public class GameManager : MonoBehaviour
 
     public void CellClicked(Cell cell)
     {
-        // Ignore les clics si la partie est termin�e
-        if (IsGameOver())
+        // Ignore les clics si la partie est terminée ou en pause
+        if (IsGameOver() || MenuObject.activeInHierarchy)
         {
             return;
         }
@@ -238,8 +262,9 @@ public class GameManager : MonoBehaviour
 
         GameObject gameOvertxt = Instantiate(gameOverText, transform);
         gameOvertxt.name = "GameOverText";
-        gameOvertxt.transform.SetParent(canvasObject.transform);
+        gameOvertxt.transform.SetParent(winLoseScreenObject.transform);
         gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
+        gameOvertxt.GetComponent<RectTransform>().localScale= new Vector2(2,2);
     }
 
     public bool IsGameOver()
@@ -258,13 +283,7 @@ public class GameManager : MonoBehaviour
      
     public void Restart()
     {
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                Destroy(grid[x, y].gameObject);
-            }
-        }
+        Destroy(GameObject.Find("Grid"));
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
         CreateGrid();
