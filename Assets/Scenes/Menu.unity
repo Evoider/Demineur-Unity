@@ -509,11 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 415617449}
     - target: {fileID: 7412791438331092938, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NumberOfMines
+      value: SetMapSize
       objectReference: {fileID: 0}
     - target: {fileID: 7412791438331092938, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StartParam, Assembly-CSharp
+      value: Parameter, Assembly-CSharp
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}

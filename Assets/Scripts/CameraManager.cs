@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
+    private const int zoomLimit = 25;
     private GameManager gameManager;
     private Camera cam;
 
@@ -53,7 +54,12 @@ public class CameraManager : MonoBehaviour
     {
         bound = gameManager.width;
         transform.position = new Vector3((bound / 2) - 0.5f, (bound / 2) - 0.5f, -10);
-        cam.orthographicSize = bound / 2;
+
+        if (bound < zoomLimit)
+        {
+            cam.orthographicSize = bound / 2;
+        }
+        else cam.orthographicSize = zoomLimit / 2;
     }
     public void pauseCamera()
     {
