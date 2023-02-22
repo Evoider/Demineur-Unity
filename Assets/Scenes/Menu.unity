@@ -331,6 +331,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1226269743288746698, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_text
+      value: 'Choose map size :'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226269743288746698, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_fontSize
+      value: 56.85
+      objectReference: {fileID: 0}
     - target: {fileID: 1495857571892001111, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

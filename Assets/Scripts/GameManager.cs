@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     private void PlaceMines()
     {
         int minesPlaced = 0;
-
+        mineCount = width* height *15 /100;
         while (minesPlaced < mineCount)
         {
             int x = Random.Range(0, width);
