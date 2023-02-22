@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Sprite flagSprite;
     public GameObject gameOverText;
     public GameObject winText;
+    public GameObject gameTimer;
 
     private GameObject canvasObject;
     private GameObject gridObject;
@@ -134,7 +136,6 @@ public class GameManager : MonoBehaviour
             winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
         }
     }
-
 
     private void RevealEmptyCells(int x, int y)
     {
