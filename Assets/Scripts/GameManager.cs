@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Sprite flagSprite;
     public GameObject gameOverText;
     public GameObject winText;
+    public GameObject gameTimer;
 
     [SerializeField] GameObject MenuObject;
     private GameObject winLoseScreenObject;
@@ -158,7 +160,6 @@ public class GameManager : MonoBehaviour
             winTxt.GetComponent<RectTransform>().localScale= new Vector2(2, 2);
         }
     }
-
 
     private void RevealEmptyCells(int x, int y)
     {
