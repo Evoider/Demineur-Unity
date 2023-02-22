@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1337ffd487a1a254d9435efeb0c3480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
 --- !u!114 &632940364 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5898182456533942595, guid: f5e954f6684420042b2cdb40b55e2e0c, type: 3}
@@ -678,19 +679,47 @@ PrefabInstance:
       value: MenuBtn
       objectReference: {fileID: 0}
     - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 632940364}
     - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 519420033}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowMenuPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: pauseCamera
       objectReference: {fileID: 0}
     - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MenuManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152195653732271835, guid: 7baa45cf37a67254a9996c9663bb448b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -932,6 +961,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420033}
     - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 632940364}
@@ -944,6 +981,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420033}
     - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 519420033}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowLevelPanel
       objectReference: {fileID: 0}
@@ -954,6 +999,18 @@ PrefabInstance:
     - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: UpdateCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: pauseCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385722127974125804, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4460201912979386460, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_text
@@ -992,12 +1049,40 @@ PrefabInstance:
       value: BackToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 632940364}
     - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 519420033}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ShowLevelPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: pauseCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CameraManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507956620948301607, guid: 90376671a7be64449a317672c6c451bd, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8121930478183862118, guid: 90376671a7be64449a317672c6c451bd, type: 3}
       propertyPath: m_AnchoredPosition.x

@@ -343,9 +343,33 @@ PrefabInstance:
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 415617449}
+    - target: {fileID: 1641244407347679319, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 70.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641244407347679319, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 22.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641244407347679319, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 210.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641244407347679319, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 43.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 2115082228004762170, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.019999504
+      objectReference: {fileID: 0}
     - target: {fileID: 5197092011130847770, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_Name
       value: StartMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5197092011130847770, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5197092011130847772, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_UiScaleMode
@@ -465,7 +489,7 @@ PrefabInstance:
       objectReference: {fileID: 1609357483}
     - target: {fileID: 5197092011130847775, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5197092011330528878, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -475,6 +499,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5898182455590440544}
+    - target: {fileID: 7412791438331092938, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
+      propertyPath: m_CharacterLimit
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7412791438331092938, guid: 7589a9ea8e248914a8b53d98c418fb29, type: 3}
       propertyPath: m_OnEndEdit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
