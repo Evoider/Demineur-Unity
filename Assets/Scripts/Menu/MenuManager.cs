@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject CheatBtn;
+    private bool isCheatActive = false;
+
     public GameObject MenuPanel;
     private GameObject InGameMenuPanel;
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {  
         if(SceneManager.GetActiveScene().buildIndex == 1)
         {
             InGameMenuPanel = GameObject.Find("InGameMenu");
@@ -19,6 +21,16 @@ public class MenuManager : MonoBehaviour
         }
         else { MenuPanel.SetActive(true);}
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (isCheatActive) ShowCheatButton(isCheatActive);
+            else ShowCheatButton(isCheatActive);
+        }
+
+    }
+
     public void ShowLevelPanel()
     {
         MenuPanel.SetActive(false);
@@ -29,6 +41,12 @@ public class MenuManager : MonoBehaviour
     {
         MenuPanel.SetActive(true);
         InGameMenuPanel.SetActive(false);
+    }
+
+    public void ShowCheatButton(bool state)
+    {
+        CheatBtn.SetActive(state);
+        isCheatActive = !isCheatActive;
     }
 
     public void StartGame()
