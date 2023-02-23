@@ -81,11 +81,19 @@ public class GameManager : MonoBehaviour
         mineCount = width* height *15 /100;
         while (minesPlaced < mineCount)
         {
+
             int x = Random.Range(0, width);
             int y = Random.Range(0, height);
-
+            int adjacentMines = CountAdjacentMines(x, y);
             // Place une mine si la case est vide
-            if (!grid[x, y].isMine)
+            if (adjacentMines >= 3)
+            {
+                if (!grid[x, y].isMine)
+                {
+                    continue;
+                }
+            }
+            else if (!grid[x, y].isMine)
             {
                 grid[x, y].isMine = true;
                 minesPlaced++;
