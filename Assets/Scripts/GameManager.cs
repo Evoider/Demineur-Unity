@@ -23,19 +23,30 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
     public GameObject gameTimer;
+    public int mode;
 
     [SerializeField] GameObject MenuObject;
     private GameObject winLoseScreenObject;
     private GameObject gridObject;
     private Cell[,] grid;
     private bool firstCell;
+    private int minesPlaced = 0;
+
 
     private void Start()
     {
         winLoseScreenObject = GameObject.Find("Win/LoseScreen");
         StartGame();
     }
-   
+    private void Update()
+    {
+        if (mode == 1)
+        {
+            gridObject.transform.RotateAround(new Vector3(width / 2, height / 2), Vector3.forward, 10 * Time.deltaTime);
+            //gridObject.transform.Rotate(0,0,10*Time.deltaTime);
+        }
+    }
+
     public void MapSize(string input)
     {
         if (input.Length != 0)
@@ -44,13 +55,14 @@ public class GameManager : MonoBehaviour
             width = number;
             height = number;
         }
-            
-        
+
+
     }
 
     private void StartGame()
     {
         MapSize(GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize);
+        mode = GameObject.Find("ParamStart").GetComponent<Parameter>().Mode;
         CreateGrid();
         PlaceMines();
         GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
@@ -59,6 +71,7 @@ public class GameManager : MonoBehaviour
 
     private void CreateGrid()
     {
+        firstCell = true;
         gridObject = new GameObject();
         gridObject.name = "Grid";
 
@@ -82,8 +95,7 @@ public class GameManager : MonoBehaviour
 
     private void PlaceMines()
     {
-        int minesPlaced = 0;
-        mineCount = width* height *15 /100;
+        mineCount = width * height * 15 / 100;
         while (minesPlaced < mineCount)
         {
 
@@ -93,7 +105,7 @@ public class GameManager : MonoBehaviour
             // Place une mine si la case est vide
             if (adjacentMines >= 3)
             {
-                if (!grid[x, y].isMine)
+                if (!grid[x, y].isMine || !grid[x, y].isRevealed)
                 {
                     continue;
                 }
@@ -164,11 +176,12 @@ public class GameManager : MonoBehaviour
 
         if (allCellsRevealed)
         {
+            FindObjectOfType<Timer>().Pause();
             GameObject winTxt = Instantiate(winText, transform);
             winTxt.name = "WinText";
             winTxt.transform.SetParent(winLoseScreenObject.transform);
             winTxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
-            winTxt.GetComponent<RectTransform>().localScale= new Vector2(2, 2);
+            winTxt.GetComponent<RectTransform>().localScale = new Vector2(2, 2);
         }
     }
 
@@ -214,7 +227,9 @@ public class GameManager : MonoBehaviour
 
     private void FirstCellClicked(Cell cell)
     {
-
+        cell.isMine = false;
+        minesPlaced--;
+        PlaceMines();
     }
     public void CellClicked(Cell cell)
     {
@@ -225,10 +240,22 @@ public class GameManager : MonoBehaviour
         }
 
         if (firstCell)
+        {
+            firstCell = false;
+            FirstCellClicked(cell);
+            //foreach (Cell cel in grid)
+            //{
+            //    if (cel.isMine && !cel.isRevealed)
+            //    {
+            //        cel.Explode();
+            //    }
+            //}
+        }
         // R�v�le la cellule cliqu�e
         if (cell.isMine)
         {
             cell.RevealExplodedMine();
+            cell.Explode();
             GameOver();
         }
         else if (cell.adjacentMines == 0)
@@ -262,6 +289,7 @@ public class GameManager : MonoBehaviour
         CheckWinCondition();
     }
 
+
     public void GameOver()
     {
         // Révéle toutes les mines
@@ -270,8 +298,11 @@ public class GameManager : MonoBehaviour
             if (cell.isMine && !cell.isRevealed)
             {
                 cell.RevealMine();
+                cell.Explode();
             }
         }
+
+        FindObjectOfType<Timer>().Pause();
 
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
@@ -280,7 +311,7 @@ public class GameManager : MonoBehaviour
         gameOvertxt.name = "GameOverText";
         gameOvertxt.transform.SetParent(winLoseScreenObject.transform);
         gameOvertxt.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20);
-        gameOvertxt.GetComponent<RectTransform>().localScale= new Vector2(2,2);
+        gameOvertxt.GetComponent<RectTransform>().localScale = new Vector2(2, 2);
     }
 
     public bool IsGameOver()
@@ -296,12 +327,13 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-     
+
     public void Restart()
     {
         Destroy(GameObject.Find("Grid"));
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
+        minesPlaced = 0;
         CreateGrid();
         PlaceMines();
         GameObject.Find("BombCount").GetComponent<BombCounter>().Init();

@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Parameter : MonoBehaviour
 {
-    public string MapSize { get; private set; }
+    public string MapSize;
+    public int Mode;
     // Start is called before the first frame update
     void Start()
     {
         MapSize = "10";
+        Mode = 0;
         DontDestroyOnLoad(transform.gameObject);
     }
 
@@ -16,5 +18,10 @@ public class Parameter : MonoBehaviour
     {
         if (input.Length != 0)
             MapSize = input;
+    }
+
+    public void SetMode(int input)
+    {
+        Mode = input;
     }
 }
