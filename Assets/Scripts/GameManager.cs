@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
     public GameObject gameTimer;
-    public int rotateGrid;
+    public int mode;
 
     [SerializeField] GameObject MenuObject;
     private GameObject winLoseScreenObject;
@@ -40,9 +40,9 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (rotateGrid == 1)
+        if (mode == 1)
         {
-            gridObject.transform.RotateAround(new Vector3(width/2, height/2), Vector3.forward, 10*Time.deltaTime);
+            gridObject.transform.RotateAround(new Vector3(width / 2, height / 2), Vector3.forward, 10 * Time.deltaTime);
             //gridObject.transform.Rotate(0,0,10*Time.deltaTime);
         }
     }
@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
     private void StartGame()
     {
         MapSize(GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize);
+        mode = GameObject.Find("ParamStart").GetComponent<Parameter>().Mode;
         CreateGrid();
         PlaceMines();
         GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
@@ -104,7 +105,7 @@ public class GameManager : MonoBehaviour
             // Place une mine si la case est vide
             if (adjacentMines >= 3)
             {
-                if (!grid[x, y].isMine || !grid[x,y].isRevealed)
+                if (!grid[x, y].isMine || !grid[x, y].isRevealed)
                 {
                     continue;
                 }
@@ -175,6 +176,7 @@ public class GameManager : MonoBehaviour
 
         if (allCellsRevealed)
         {
+            FindObjectOfType<Timer>().Pause();
             GameObject winTxt = Instantiate(winText, transform);
             winTxt.name = "WinText";
             winTxt.transform.SetParent(winLoseScreenObject.transform);
@@ -287,7 +289,7 @@ public class GameManager : MonoBehaviour
         CheckWinCondition();
     }
 
-    
+
     public void GameOver()
     {
         // Révéle toutes les mines
@@ -299,6 +301,8 @@ public class GameManager : MonoBehaviour
                 cell.Explode();
             }
         }
+
+        FindObjectOfType<Timer>().Pause();
 
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
