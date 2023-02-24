@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private GameObject winLoseScreenObject;
     private GameObject gridObject;
     private Cell[,] grid;
+    private bool firstCell;
 
     private void Start()
     {
@@ -37,9 +38,13 @@ public class GameManager : MonoBehaviour
    
     public void MapSize(string input)
     {
-        int number = int.Parse(input);
-        width= number;
-        height= number;
+        if (input.Length != 0)
+        {
+            int number = int.Parse(input);
+            width = number;
+            height = number;
+        }
+            
         
     }
 
@@ -207,6 +212,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void FirstCellClicked(Cell cell)
+    {
+
+    }
     public void CellClicked(Cell cell)
     {
         // Ignore les clics si la partie est terminée ou en pause
@@ -215,6 +224,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (firstCell)
         // R�v�le la cellule cliqu�e
         if (cell.isMine)
         {
