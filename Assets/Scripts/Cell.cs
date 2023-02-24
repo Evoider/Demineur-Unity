@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Cell : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class Cell : MonoBehaviour
     public bool isRevealed;
     public bool isMarked;
     public AudioClip[] explosion;
+    private bool rotate;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
     BombCounter Count;
-    public int adjacentMines; 
+    public int adjacentMines;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public class Cell : MonoBehaviour
 
     }
 
+   
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
@@ -50,7 +53,7 @@ public class Cell : MonoBehaviour
         spriteRenderer.sprite = gameManager.numberSprites[adjacentMines - 1];
         spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f);
     }
-    
+
     public void RevealMine()
     {
         isRevealed = true;
@@ -79,5 +82,17 @@ public class Cell : MonoBehaviour
             spriteRenderer.sprite = gameManager.defaultSprite;
             Count.Count++;
         }
+    }
+
+
+    public void Explode()
+    {
+        //GetComponent<Rigidbody2D>().gravityScale = 3;
+        //GetComponent<Rigidbody2D>().MoveRotation(90);
+        GetComponent<Rigidbody2D>().angularVelocity = 3600;
+
+        rotate = true;
+
+
     }
 }
