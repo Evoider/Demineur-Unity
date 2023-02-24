@@ -14,6 +14,7 @@ public class Parameter : MonoBehaviour
 
     public void SetMapSize(string input)
     {
-        MapSize = input;
+        if (input.Length != 0)
+            MapSize = input;
     }
 }
