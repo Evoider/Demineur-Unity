@@ -30,7 +30,7 @@ public class Cell : MonoBehaviour
     private void Update()
     {
         float posy = transform.position.y;
-        if(posy<0) Destroy(gameObject);
+        if(posy<-100) Destroy(gameObject);
 
     }
 
