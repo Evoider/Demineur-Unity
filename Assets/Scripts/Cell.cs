@@ -87,7 +87,7 @@ public class Cell : MonoBehaviour
 
     public void Explode()
     {
-        //GetComponent<Rigidbody2D>().gravityScale = 3;
+        GetComponent<Rigidbody2D>().gravityScale = 1;
         //GetComponent<Rigidbody2D>().MoveRotation(90);
         GetComponent<Rigidbody2D>().angularVelocity = 3600;
 
