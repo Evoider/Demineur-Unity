@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
     private float verticalInput;
     [SerializeField] private float speed = 10;
     private float bound;
+    private float spacing;
     private bool pause;
     // Start is called before the first frame update
     void Start()
@@ -54,11 +55,12 @@ public class CameraManager : MonoBehaviour
     public void UpdateCamera()
     {
         bound = gameManager.width;
-        transform.position = new Vector3((bound / 2) - 0.5f, (bound / 2) - 0.5f, -10);
+        spacing = gameManager.spacing;
+        transform.position = new Vector3((bound / 2) - 0.5f, (bound / 2) * spacing - 0.5f, -10);
 
         if (bound < zoomLimit)
         {
-            cam.orthographicSize = bound / 2;
+            cam.orthographicSize = bound * spacing / 2;
         }
         else cam.orthographicSize = zoomLimit / 2;
     }
