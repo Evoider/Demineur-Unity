@@ -198,19 +198,24 @@ public class GameManager : MonoBehaviour
                     winTxt.GetComponent<RectTransform>().localScale = new Vector2(2, 2);
                     break;
                 case ModeEnum.Infinite:
-                    MapSize(startSize + level);
-                    level++;
-                    Destroy(GameObject.Find("Grid"));
-                    minesPlaced = 0;
-                    CreateGrid();
-                    PlaceMines();
-                    GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
-                    FindAnyObjectByType<CameraManager>().UpdateCamera();
+                    InfiniteMode();
                     break;
 
             }
 
         }
+    }
+
+    private void InfiniteMode()
+    {
+        MapSize(startSize + level);
+        level++;
+        Destroy(GameObject.Find("Grid"));
+        minesPlaced = 0;
+        CreateGrid();
+        PlaceMines();
+        GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
+        FindAnyObjectByType<CameraManager>().UpdateCamera();
     }
 
     private void RevealEmptyCells(int x, int y)
