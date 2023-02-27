@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                GameObject newCell = Instantiate(cellPrefab, new Vector3(x, y, 0), Quaternion.identity);
+                GameObject newCell = Instantiate(cellPrefab, new Vector3(x * spacing, y * spacing, 0), Quaternion.identity);
                 newCell.name = string.Format("Cell ({0}, {1})", x, y);
                 newCell.transform.parent = gridObject.transform; // set the grid object as the parent of the new cell
                 Cell cell = newCell.GetComponent<Cell>();
