@@ -404,7 +404,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (grid[x, y].isMine)
                 {
-                    grid[x, y].RevealMine();
+                    grid[x, y].ToggleMark();
                 }
             }
         }

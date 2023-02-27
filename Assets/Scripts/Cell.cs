@@ -27,7 +27,13 @@ public class Cell : MonoBehaviour
 
     }
 
-   
+    private void Update()
+    {
+        float posy = transform.position.y;
+        if(posy<0) Destroy(gameObject);
+
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
