@@ -35,7 +35,8 @@ public class GameManager : MonoBehaviour
     private Cell[,] grid;
     private bool firstCell;
     private int minesPlaced = 0;
-
+    [SerializeField] private int level;
+    private int startSize = 3;
 
     private void Start()
     {
@@ -69,9 +70,10 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        MapSize(GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize);
+        startSize = GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize;
+        MapSize(startSize);
         mode = GameObject.Find("ParamStart").GetComponent<Parameter>().mode;
-
+        level = 1;
         CreateGrid();
         PlaceMines();
         GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
@@ -196,7 +198,8 @@ public class GameManager : MonoBehaviour
                     winTxt.GetComponent<RectTransform>().localScale = new Vector2(2, 2);
                     break;
                 case ModeEnum.Infinite:
-                    MapSize(width + 1);
+                    MapSize(startSize + level);
+                    level++;
                     Destroy(GameObject.Find("Grid"));
                     minesPlaced = 0;
                     CreateGrid();
