@@ -8,10 +8,12 @@ public class Parameter : MonoBehaviour
 {
     private static Parameter instance;
 
+    public string MapSize;
+    public int Mode;
+    public float Volume = 0.5f;
     public int MapSize;
      private GameObject inputObj;
     public GameManager.ModeEnum mode;
-    public float volume;
     // Start is called before the first frame update
     void Start()
     {

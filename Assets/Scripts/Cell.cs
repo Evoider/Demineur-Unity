@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -69,7 +70,9 @@ public class Cell : MonoBehaviour
     public void RevealExplodedMine()
     {
         isRevealed = true;
-        
+        audioSource.clip = explosion[Random.Range(0, explosion.Length)];
+        audioSource.volume = FindAnyObjectByType<Parameter>().Volume;
+        audioSource.Play();
         spriteRenderer.sprite = gameManager.loseMineSprite;
         spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f);
     }
