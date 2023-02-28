@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Parameter : MonoBehaviour
 {
-    public string MapSize;
     public int Mode;
     public float Volume = 0.5f;
     public int MapSize;
@@ -45,9 +44,5 @@ public class Parameter : MonoBehaviour
             default:
                 break;
         }
-    }
-    public void SetVolume(float input)
-    {
-        volume = input;
     }
 }
