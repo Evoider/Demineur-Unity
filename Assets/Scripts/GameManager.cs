@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
 {
     public int width = 10;
     public int height = 10;
+    public int PercentOfMines = 15;
+
     public float spacing = 1.2f;
     public int mineCount = 10;
     public GameObject cellPrefab;
@@ -70,14 +73,14 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        startSize = GameObject.Find("ParamStart").GetComponent<Parameter>().MapSize;
+        startSize = FindAnyObjectByType<Parameter>().MapSize;
         MapSize(startSize);
-        mode = GameObject.Find("ParamStart").GetComponent<Parameter>().mode;
+        mode = FindAnyObjectByType<Parameter>().mode;
         level = 1;
         CreateGrid();
         PlaceMines();
-        GameObject.Find("BombCount").GetComponent<BombCounter>().Init();
-        GameObject.Find("Main Camera").GetComponent<CameraManager>().UpdateCamera();
+        FindAnyObjectByType<BombCounter>().Init();
+        FindAnyObjectByType<CameraManager>().UpdateCamera();
     }
 
     private void CreateGrid()
@@ -106,7 +109,7 @@ public class GameManager : MonoBehaviour
 
     private void PlaceMines()
     {
-        mineCount = width * height * 15 / 100;
+        mineCount = width * height * PercentOfMines / 100;
         while (minesPlaced < mineCount)
         {
 
@@ -114,7 +117,7 @@ public class GameManager : MonoBehaviour
             int y = Random.Range(0, height);
             int adjacentMines = CountAdjacentMines(x, y);
             // Place une mine si la case est vide
-            if (adjacentMines >= 3)
+            if (adjacentMines >= 8)
             {
                 if (!grid[x, y].isMine || !grid[x, y].isRevealed)
                 {
@@ -306,6 +309,7 @@ public class GameManager : MonoBehaviour
             {
                 cell.RevealExplodedMine();
                 cell.Explode();
+                StartCoroutine(ExplosionZone(cell));
                 GameOver();
             }
             else if (cell.adjacentMines == 0)
@@ -320,6 +324,53 @@ public class GameManager : MonoBehaviour
                 CheckWinCondition();
             }
         }
+    }
+
+    
+
+    IEnumerator ExplosionZone(Cell cell)
+    {
+        for (int x2 = cell.x - 2; x2 <= cell.x + 2; x2++)
+        {
+            for (int y2 = cell.y - 2; y2 <= cell.y + 2; y2++)
+            {
+                // Ignore la case elle-m�me
+                if ((x2 == cell.x && y2 == cell.y) || x2 > cell.x + 1 || x2 < cell.x - 1 || y2 > cell.y + 1 || y2 < cell.y - 1)
+                {
+                    if ((x2 >= 0 && x2 < width && y2 >= 0 && y2 < height) && ((x2 == cell.x && (y2 == cell.y - 2 || y2 == cell.y + 2)) || (y2 == cell.y && (x2 == cell.x - 2 || x2 == cell.x + 2))))
+                    {
+                        if (grid[x2, y2].isMine && !grid[x2, y2].isExploded)
+                        {
+                            yield return new WaitForSeconds(0.22f);
+                            grid[x2, y2].Explode();
+                            StartCoroutine(ExplosionZone(grid[x2, y2]));
+                        }
+                        else grid[x2, y2].Explode();
+                    }
+                    else continue;
+
+
+                }
+                else
+                {
+
+                    // V�rifie si la case est dans la grille
+                    if (x2 >= 0 && x2 < width && y2 >= 0 && y2 < height)
+                    {
+
+                        if (grid[x2, y2].isMine && !grid[x2, y2].isExploded)
+                        {
+                            yield return new WaitForSeconds(0.2f);
+                            grid[x2, y2].Explode();
+                            StartCoroutine(ExplosionZone(grid[x2, y2]));
+                        }
+                        else grid[x2, y2].Explode();
+                    }
+                }
+            }
+        }
+
+
     }
 
     public void CellMarked(Cell cell)
@@ -349,7 +400,7 @@ public class GameManager : MonoBehaviour
             if (cell.isMine && !cell.isRevealed)
             {
                 cell.RevealMine();
-                cell.Explode();
+
             }
         }
 

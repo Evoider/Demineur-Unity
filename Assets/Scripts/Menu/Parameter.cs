@@ -7,6 +7,7 @@ public class Parameter : MonoBehaviour
     public int MapSize;
      private GameObject inputObj;
     public GameManager.ModeEnum mode;
+    public float volume;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,5 +43,9 @@ public class Parameter : MonoBehaviour
             default:
                 break;
         }
+    }
+    public void SetVolume(float input)
+    {
+        volume = input;
     }
 }
