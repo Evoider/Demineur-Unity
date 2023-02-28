@@ -103,6 +103,7 @@ public class Cell : MonoBehaviour
         //GetComponent<Rigidbody2D>().angularVelocity = 3600;
 
         audioSource.clip = explosion[Random.Range(0, explosion.Length)];
+        audioSource.volume = GetComponent<Parameter>().Volume;
         audioSource.Play();
 
     }
