@@ -6,6 +6,7 @@ public class Parameter : MonoBehaviour
 {
     public string MapSize;
     public int Mode;
+    public float Volume = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
