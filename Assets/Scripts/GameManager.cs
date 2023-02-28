@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverText;
     public GameObject winText;
     public GameObject gameTimer;
+    public GameObject SelectMapSizeObj;
     public enum ModeEnum
     {
         Basic, Rotate, Infinite
@@ -76,7 +77,11 @@ public class GameManager : MonoBehaviour
         startSize = FindAnyObjectByType<Parameter>().MapSize;
         MapSize(startSize);
         mode = FindAnyObjectByType<Parameter>().mode;
-        level = 1;
+        if(mode == ModeEnum.Infinite)
+        {
+            level = 1;
+            SelectMapSizeObj.gameObject.SetActive(false);
+        }
         CreateGrid();
         PlaceMines();
         FindAnyObjectByType<BombCounter>().Init();
@@ -435,6 +440,7 @@ public class GameManager : MonoBehaviour
         Destroy(GameObject.Find("GameOverText"));
         Destroy(GameObject.Find("WinText"));
         minesPlaced = 0;
+        level = 1;
         if (mode == ModeEnum.Infinite) { MapSize(3); }
         CreateGrid();
         PlaceMines();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -66,6 +67,9 @@ public class MenuManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        try { FindAnyObjectByType<Parameter>().MapSize = 10; 
+        }
+        catch { Debug.Log("Pas de ParamStart"); }
         
         SceneManager.LoadScene(0);
     }

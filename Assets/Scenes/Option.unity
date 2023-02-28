@@ -506,6 +506,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5898182456533942595, guid: f5e954f6684420042b2cdb40b55e2e0c, type: 3}
+      propertyPath: CheatBtn
+      value: 
+      objectReference: {fileID: 1973883307}
+    - target: {fileID: 5898182456533942595, guid: f5e954f6684420042b2cdb40b55e2e0c, type: 3}
+      propertyPath: MenuPanel
+      value: 
+      objectReference: {fileID: 1837164289}
     - target: {fileID: 5898182456533942596, guid: f5e954f6684420042b2cdb40b55e2e0c, type: 3}
       propertyPath: m_RootOrder
       value: 4

@@ -16,6 +16,7 @@ public class Cell : MonoBehaviour
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
+    [SerializeField] private GameObject particleObj;
     BombCounter Count;
     public int adjacentMines;
 
@@ -105,5 +106,6 @@ public class Cell : MonoBehaviour
         audioSource.clip = explosion[Random.Range(0, explosion.Length)];
         audioSource.Play();
 
+        particleObj.GetComponent<ParticleSystem>().Play();
     }
 }
