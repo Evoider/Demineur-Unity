@@ -10,9 +10,9 @@ public class Cell : MonoBehaviour
     public int y;
     public bool isMine;
     public bool isRevealed;
+    public bool isExploded;
     public bool isMarked;
     public AudioClip[] explosion;
-    private bool rotate;
     private GameManager gameManager;
     private SpriteRenderer spriteRenderer;
     private AudioSource audioSource;
@@ -28,7 +28,13 @@ public class Cell : MonoBehaviour
 
     }
 
-   
+    private void Update()
+    {
+        float posy = transform.position.y;
+        if(posy<-100) Destroy(gameObject);
+
+    }
+
     private void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
@@ -89,12 +95,15 @@ public class Cell : MonoBehaviour
 
     public void Explode()
     {
-        //GetComponent<Rigidbody2D>().gravityScale = 3;
-        //GetComponent<Rigidbody2D>().MoveRotation(90);
-        GetComponent<Rigidbody2D>().angularVelocity = 3600;
+        gameObject.layer = 7;
+        spriteRenderer.sortingOrder = 2;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-5,5),Random.Range(0,5)),ForceMode2D.Impulse);
+        isExploded= true;
+        //GetComponent<Rigidbody2D>().angularVelocity = 3600;
 
-        rotate = true;
-
+        audioSource.clip = explosion[Random.Range(0, explosion.Length)];
+        audioSource.Play();
 
     }
 }

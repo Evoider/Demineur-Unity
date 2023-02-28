@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 991249241128908343}
   - component: {fileID: 8891021771770091117}
   - component: {fileID: -2570299310004096380}
-  - component: {fileID: 1387305694487743040}
+  - component: {fileID: -6516762837951055607}
   m_Layer: 0
   m_Name: Cell
   m_TagString: Untagged
@@ -233,7 +233,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!50 &1387305694487743040
+--- !u!50 &-6516762837951055607
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -241,16 +241,16 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7378693460840501337}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 2
+  m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
