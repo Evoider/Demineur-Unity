@@ -8,7 +8,7 @@ public class Parameter : MonoBehaviour
 {
     private static Parameter instance;
 
-    public string MapSize;
+    
     public int Mode;
     public float Volume = 0.5f;
     public int MapSize;
