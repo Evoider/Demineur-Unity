@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Parameter : MonoBehaviour
 {
+    private static Parameter instance;
+
+    public string MapSize;
     public int Mode;
     public float Volume = 0.5f;
     public int MapSize;
@@ -15,7 +20,12 @@ public class Parameter : MonoBehaviour
         MapSize = 10;
         mode = GameManager.ModeEnum.Basic;
         inputObj= GameObject.Find("SelectSize");
-        DontDestroyOnLoad(transform.gameObject);
+
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(transform.gameObject);
+        }else Destroy(gameObject);
     }
 
     public void SetMapSize(string input)
@@ -45,4 +55,5 @@ public class Parameter : MonoBehaviour
                 break;
         }
     }
+    
 }

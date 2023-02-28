@@ -66,7 +66,7 @@ public class MenuManager : MonoBehaviour
 
     public void BackToMainMenu()
     {
-        Destroy(GameObject.Find("ParamStart"));
+        
         SceneManager.LoadScene(0);
     }
 }
