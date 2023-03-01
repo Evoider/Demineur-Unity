@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     private Cell[,] grid;
     private bool firstCell;
     private int minesPlaced = 0;
-    [SerializeField] private int level;
+    public int level { get; private set; }
     private int startSize = 3;
 
     private void Start()
@@ -75,11 +75,12 @@ public class GameManager : MonoBehaviour
         startSize = FindAnyObjectByType<Parameter>().MapSize;
         MapSize(startSize);
         mode = FindAnyObjectByType<Parameter>().mode;
-        if(mode == ModeEnum.Infinite)
+        if (mode == ModeEnum.Infinite)
         {
             level = 1;
             SelectMapSizeObj.gameObject.SetActive(false);
-        }
+            GameObject.FindGameObjectWithTag("Info base").SetActive(false);
+        }else GameObject.FindGameObjectWithTag("Info infini").SetActive(false);
         CreateGrid();
         PlaceMines();
         FindAnyObjectByType<BombCounter>().Init();
@@ -329,7 +330,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
+
 
     IEnumerator ExplosionZone(Cell cell)
     {
