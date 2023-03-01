@@ -9,7 +9,6 @@ public class Parameter : MonoBehaviour
     private static Parameter instance;
 
     
-    public int Mode;
     public float Volume = 0.5f;
     public int MapSize;
      private GameObject inputObj;
@@ -19,7 +18,6 @@ public class Parameter : MonoBehaviour
     {
         MapSize = 10;
         mode = GameManager.ModeEnum.Basic;
-        inputObj= GameObject.Find("SelectSize");
 
         if (instance == null)
         {
@@ -28,32 +26,6 @@ public class Parameter : MonoBehaviour
         }else Destroy(gameObject);
     }
 
-    public void SetMapSize(string input)
-    {
-        if (input.Length != 0)
-            MapSize = int.Parse(input);
-    }
-
-    public void SetMode(int input)
-    {
-        switch (input)
-        {
-            case 0:
-                inputObj.SetActive(true);
-                mode = GameManager.ModeEnum.Basic;
-                break;
-            case 1:
-                inputObj.SetActive(true);
-                mode = GameManager.ModeEnum.Rotate;
-                break;
-            case 2:
-                mode = GameManager.ModeEnum.Infinite;
-                MapSize = 3;
-                inputObj.SetActive(false);
-                break;
-            default:
-                break;
-        }
-    }
+    
     
 }
