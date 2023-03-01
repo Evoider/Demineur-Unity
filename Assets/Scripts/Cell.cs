@@ -20,6 +20,9 @@ public class Cell : MonoBehaviour
     BombCounter Count;
     public int adjacentMines;
 
+    float newScale;
+    float rdmSpeed;
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -33,6 +36,10 @@ public class Cell : MonoBehaviour
     {
         float posy = transform.position.y;
         if(posy<-100) Destroy(gameObject);
+        if (isExploded)
+        {
+            AugmentScaleByTime();
+        }
 
     }
 
@@ -72,7 +79,7 @@ public class Cell : MonoBehaviour
     {
         isRevealed = true;
         audioSource.clip = explosion[Random.Range(0, explosion.Length)];
-        audioSource.volume = FindAnyObjectByType<Parameter>().Volume;
+        audioSource.volume = FindAnyObjectByType<Parameter>().soundVolume;
         audioSource.Play();
         spriteRenderer.sprite = gameManager.loseMineSprite;
         spriteRenderer.color = new Color(0.8f, 0.8f, 0.8f);
@@ -96,7 +103,9 @@ public class Cell : MonoBehaviour
 
     public void Explode()
     {
-        gameObject.layer = 7;
+        gameObject.layer = 3;
+        newScale = transform.localScale.x;
+        rdmSpeed = Random.Range(0, 3);
         spriteRenderer.sortingOrder = 2;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-5,5),Random.Range(0,5)),ForceMode2D.Impulse);
@@ -104,9 +113,18 @@ public class Cell : MonoBehaviour
         //GetComponent<Rigidbody2D>().angularVelocity = 3600;
 
         audioSource.clip = explosion[Random.Range(0, explosion.Length)];
-        audioSource.volume = FindAnyObjectByType<Parameter>().Volume;
+        audioSource.volume = FindAnyObjectByType<Parameter>().soundVolume;
         audioSource.Play();
 
         particleObj.GetComponent<ParticleSystem>().Play();
+    }
+    private void AugmentScaleByTime()
+    {
+        
+            newScale += rdmSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(newScale, newScale);
+
+        
+        
     }
 }

@@ -9,9 +9,9 @@ public class Parameter : MonoBehaviour
     private static Parameter instance;
 
     
-    public float Volume = 0.5f;
+    public float soundVolume = 0.15f;
+    public float musicVolume = 0.8f;
     public int MapSize;
-     private GameObject inputObj;
     public GameManager.ModeEnum mode;
     // Start is called before the first frame update
     void Start()
