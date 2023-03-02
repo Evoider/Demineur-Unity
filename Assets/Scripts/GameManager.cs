@@ -471,5 +471,11 @@ public class GameManager : MonoBehaviour
         }
         CheckWinCondition();
     }
+
+    public void ClearMessage()
+    {
+        Destroy(GameObject.Find("GameOverText"));
+        Destroy(GameObject.Find("WinText"));
+    }
 }
 
